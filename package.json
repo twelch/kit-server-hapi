@@ -1,0 +1,22 @@
+{
+  "name": "hapi-tests",
+  "version": "1.0.0",
+  "description": "Test out Hapi essentials including JWT, api publishing, and proxy",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twelch/hapi-tests.git"
+  },
+  "author": "Tim Welch",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/twelch/hapi-tests/issues"
+  },
+  "homepage": "https://github.com/twelch/hapi-tests#readme",
+  "dependencies": {
+    "hapi": "^13.4.1"
+  }
+}
