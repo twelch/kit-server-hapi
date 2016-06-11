@@ -13,26 +13,43 @@ module.exports = {
   // Time before token expires after being created.  Once expired, must authenticate to generate a new token
   tokenExpiration: '8h',
 
-  // User account, encrypted in web token
-  // Remove all samples before deploying in production
+  // User accounts - user can login to one or more sites
+  // Attributes are encrypted in web token
+  // Remove all examples before deploying in production
   users: [
-    {id: 1, username: 'user1'},
-    {id: 2, username: 'user2'}
+    { id: 1, username: 'user1', name: 'User 1', sites: ['site1','site2'] },
+    { id: 2, username: 'user2', name: 'User 2', sites: ['site2'] }
   ],
 
   // Password hashes, id's map to accounts above
   // Remove all samples before deploying in production
   passwords: [
-    {id: 1, hash: '$2a$10$VW9yDJli5LX6YjZz3vB6peiM62C9apodRMyAl6.JvMZjhA0UBJCR6'},
-    {id: 2, hash: '$2a$10$ucQTi41737UfBbGVgGxdoOo3z4XT70MQ6XFB5k2iESlIQIeL8uCSK'}
+    {userid: 1, hash: '$2a$10$VW9yDJli5LX6YjZz3vB6peiM62C9apodRMyAl6.JvMZjhA0UBJCR6'},
+    {userid: 2, hash: '$2a$10$ucQTi41737UfBbGVgGxdoOo3z4XT70MQ6XFB5k2iESlIQIeL8uCSK'}
   ],
 
-  // Global service settings, default for all views
-  services: {
-    server: 'example.com',
-    readKey: 'key1',
-    adminKey: 'key2'
+  sites: {
+    site1: {
+      logo: 'logo1.png',
+      logo2x: 'logo1@2x.png',
+      views: ['view1']
+    },
+    site2: { 
+      logo: 'logo2.png',
+      logo2x: 'logo2@2x.png',
+      views: ['view2']
+    }
   },
 
-  views: []
+  // Views are typically associated with only one site but sometimes a view will be made available in many sites
+  views: {
+    view1: {
+      name: 'View 1',
+      startExtent: []
+    },
+    view2: {
+      name: 'View 2',
+      startExtent: []
+    }
+  }
 };
