@@ -16,20 +16,20 @@ server.connection({
 });
 
 server.register(require('hapi-auth-jwt2'), function (err) {
-  /* Error handling */
+  /* ERROR HANDLING */
   if(err){
     console.log(err);
   }
   
-  /* Auth setup */
+  /**** AUTH ****/
   server.auth.strategy('jwt', 'jwt', { 
     key: settings.secret,
     validateFunc: verifySession,
     verifyOptions: { algorithms: [ 'HS256' ] }
   });
-  server.auth.default('jwt');
+  server.auth.default('jwt'); //Require token for all requests, override per route
 
-  //Proxy setup
+  /**** PROXY ****/
   server.register({
       register: require('h2o2')
   }, function (err) {
@@ -38,9 +38,7 @@ server.register(require('hapi-auth-jwt2'), function (err) {
       }
   });
 
-  // Look through the routes in
-  // all the subdirectories of API
-  // and create a new route for each
+  /**** ROUTES ****/
   glob.sync('api/**/routes/*.js', { 
     root: __dirname 
   }).forEach(file => {

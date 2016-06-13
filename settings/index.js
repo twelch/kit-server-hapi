@@ -30,11 +30,13 @@ module.exports = {
 
   sites: {
     site1: {
+      name: 'Site 1',
       logo: 'logo1.png',
       logo2x: 'logo1@2x.png',
       views: ['view1']
     },
     site2: { 
+      name: 'Site 2',
       logo: 'logo2.png',
       logo2x: 'logo2@2x.png',
       views: ['view2']
