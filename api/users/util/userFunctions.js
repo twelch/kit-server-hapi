@@ -30,8 +30,17 @@ function verifyCredentials(request, reply) {
     return reply(Boom.badRequest('Invalid site, check the URL'))
   }
 
-  // Find user and verify registered
+  // Check proper form-fields provided
+  const username = request.payload.username
   const password = request.payload.password
+  if (!username) {
+    return reply(Boom.badRequest('Missing username'))
+  }
+  if (!password) {
+    return reply(Boom.badRequest('Missing password'))
+  }
+
+  // Find user and verify registered
   const user = getUserByName(request.payload.username)
   if (!user) {
     return reply(Boom.badRequest('Incorrect username'))
@@ -40,14 +49,14 @@ function verifyCredentials(request, reply) {
   // Verify user has access to site
   const hasAccess = checkUserSiteAccess(user, sitename)
   if (!hasAccess) {
-    return reply(Boom.badRequest('You do not have access to this site'))
+    return reply(Boom.unauthorized('Account does not have access to this site'))
   }
 
   // Verify password match
   const hash = getHashById(user.id)
   bcrypt.compare(password, hash, (err, isValid) => {
     if (!isValid) {
-      return reply(Boom.badRequest('Incorrect password'))
+      return reply(Boom.unauthorized('Incorrect password'))
     }
     // Success
     return reply(user)
