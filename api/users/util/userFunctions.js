@@ -21,6 +21,7 @@ function hashPassword(password, cb) {
  * verifyCredentials - given username and password, verifies the password and returns user object
  */
 function verifyCredentials(request, reply) {
+  /*
   // Find site and verify registered
   const sitename = getSubdomain(request.info.hostname)
   if (!sitename) {
@@ -29,6 +30,7 @@ function verifyCredentials(request, reply) {
   if (!settings.sites.hasOwnProperty(sitename)) {
     return reply(Boom.badRequest('Invalid site, check the URL'))
   }
+  */
 
   // Check proper form-fields provided
   const username = request.payload.username
@@ -44,12 +46,6 @@ function verifyCredentials(request, reply) {
   const user = getUserByName(request.payload.username)
   if (!user) {
     return reply(Boom.badRequest('Incorrect username'))
-  }
-
-  // Verify user has access to site
-  const hasAccess = checkUserSiteAccess(user, sitename)
-  if (!hasAccess) {
-    return reply(Boom.unauthorized('Account does not have access to this site'))
   }
 
   // Verify password match
@@ -93,20 +89,6 @@ function getHashById(userid) {
     return password.hash
   } else {
     return false;
-  }
-}
-
-function checkUserSiteAccess(user, sitename) {
-  if (!user.sites) {
-    return false
-  }
-  const siteMatch = user.sites.find((usersite) => {
-    return (usersite === sitename)
-  })
-  if (siteMatch) {
-    return true
-  } else {
-    return false 
   }
 }
 

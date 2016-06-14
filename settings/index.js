@@ -40,6 +40,12 @@ module.exports = {
       logo: 'logo2.png',
       logo2x: 'logo2@2x.png',
       views: ['view2']
+    },
+    site3: {
+      name: 'Site 3',
+      logo: 'logo3.png',
+      logo2x: 'logo3@2x.png',
+      views: ['view3']
     }
   },
 
@@ -51,6 +57,10 @@ module.exports = {
     },
     view2: {
       name: 'View 2',
+      startExtent: []
+    },
+    view3: {
+      name: 'View 3',
       startExtent: []
     }
   }

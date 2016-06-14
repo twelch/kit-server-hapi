@@ -17,9 +17,7 @@ server.connection({
 
 server.register(require('hapi-auth-jwt2'), function (err) {
   /* ERROR HANDLING */
-  if(err){
-    console.log(err);
-  }
+  if(err) console.log(err)
   
   /**** AUTH ****/
   server.auth.strategy('jwt', 'jwt', { 
