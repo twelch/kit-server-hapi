@@ -1,33 +1,31 @@
-'use strict';
+'use strict'
 
-const Boom = require('boom');
-const bcrypt = require('bcrypt');
+const Boom = require('boom')
 const settings = require('../../../settings')
-const getSubdomain = require('../../../util/request').getSubdomain
 const pick = require('lodash/pick')
 
 /*
  * getSites - get all user istes
  */
-function getSites(request, reply) {
+function getSites (request, reply) {
   // Enhance and return new site object
-  const sites = { sites: request.auth.credentials.sites }  
+  const sites = pick(settings.sites, request.auth.credentials.sites)
   return reply(sites)
 }
 
 /*
  * getSite - get site from subdomain
  */
-function getSite(request, reply) {
+function getSite (request, reply) {
   // Verify legit request
-  const sitename = request.params.site  
+  const sitename = request.params.site
   if (!sitename) {
     return reply(Boom.badRequest('Site not provided, check the URL'))
-  } 
+  }
   if (!settings.sites.hasOwnProperty(sitename)) {
     return reply(Boom.badRequest('Invalid site, check the URL'))
   }
-  
+
   const hasSiteAccess = checkUserSiteAccess(request.auth.credentials, sitename)
   if (!hasSiteAccess) {
     return reply(Boom.unauthorized('Unauthorized'))
@@ -41,7 +39,7 @@ function getSite(request, reply) {
   return reply(site)
 }
 
-function checkUserSiteAccess(user, sitename) {
+function checkUserSiteAccess (user, sitename) {
   if (!user.sites) {
     return false
   }
@@ -51,7 +49,7 @@ function checkUserSiteAccess(user, sitename) {
   if (siteMatch) {
     return true
   } else {
-    return false 
+    return false
   }
 }
 

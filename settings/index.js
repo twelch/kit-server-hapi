@@ -17,7 +17,7 @@ module.exports = {
   // Attributes are encrypted in web token
   // Remove all examples before deploying in production
   users: [
-    { id: 1, username: 'user1', name: 'User 1', sites: ['site1','site2'] },
+    { id: 1, username: 'user1', name: 'User 1', sites: ['site1', 'site2'] },
     { id: 2, username: 'user2', name: 'User 2', sites: ['site2'] }
   ],
 
@@ -31,18 +31,21 @@ module.exports = {
   sites: {
     site1: {
       name: 'Site 1',
+      description: 'Portland, Oregon, USA',
       logo: 'logo1.png',
       logo2x: 'logo1@2x.png',
       views: ['view1']
     },
-    site2: { 
+    site2: {
       name: 'Site 2',
+      description: 'Shanghai, China',
       logo: 'logo2.png',
       logo2x: 'logo2@2x.png',
       views: ['view2']
     },
     site3: {
       name: 'Site 3',
+      description: 'Santiago, Chile',
       logo: 'logo3.png',
       logo2x: 'logo3@2x.png',
       views: ['view3']
@@ -64,4 +67,4 @@ module.exports = {
       startExtent: []
     }
   }
-};
+}

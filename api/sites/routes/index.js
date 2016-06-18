@@ -1,7 +1,5 @@
-const Boom = require('boom')
-const settings = require('../../../settings')
 const Sites = require('../util/siteFunctions')
-const Joi = require('joi');
+const Joi = require('joi')
 /*
  * Sites API - returns necessary app config for client
  */
@@ -16,7 +14,7 @@ module.exports = [{
     pre: [
       { method: Sites.getSites, assign: 'sites' }
     ],
-    handler: function (request, reply) {    
+    handler: function (request, reply) {
       reply(request.pre.sites)
     }
   }
@@ -28,7 +26,7 @@ module.exports = [{
     pre: [
       { method: Sites.getSite, assign: 'site' }
     ],
-    handler: function (request, reply) {    
+    handler: function (request, reply) {
       reply(request.pre.site)
     },
     validate: {
