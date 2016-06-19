@@ -34,7 +34,7 @@ module.exports = {
       description: 'Portland, Oregon, USA',
       logo: 'logo1.png',
       logo2x: 'logo1@2x.png',
-      views: ['view1']
+      views: ['view1','view2']
     },
     site2: {
       name: 'Site 2',

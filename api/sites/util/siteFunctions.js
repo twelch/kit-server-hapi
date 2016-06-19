@@ -3,13 +3,22 @@
 const Boom = require('boom')
 const settings = require('../../../settings')
 const pick = require('lodash/pick')
-
+const clonedeep = require('lodash/clonedeep')
 /*
- * getSites - get all user istes
+ * getSites - get all user sites
  */
 function getSites (request, reply) {
-  // Enhance and return new site object
-  const sites = pick(settings.sites, request.auth.credentials.sites)
+  // Build up complete sites object
+  let sites = clonedeep(settings.sites)
+  // Pick out sites user has access to
+  sites = pick(sites, request.auth.credentials.sites)
+  Object.keys(sites).forEach((sitename) => {
+    // Replace view names with full objects
+    let curSite = sites[sitename]
+    curSite.views = curSite.views.map((viewname) => {
+      return settings.views[viewname]
+    })    
+  })
   return reply(sites)
 }
 
