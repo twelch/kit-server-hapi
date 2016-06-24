@@ -12,9 +12,10 @@ function getSites (request, reply) {
   let sites = clonedeep(settings.sites)
   // Pick out sites user has access to
   sites = pick(sites, request.auth.credentials.sites)
-  Object.keys(sites).forEach((sitename) => {
+  Object.keys(sites).forEach((siteid) => {
     // Replace view names with full objects
-    let curSite = sites[sitename]
+    let curSite = sites[siteid]
+    curSite.id = siteid
     curSite.views = curSite.views.map((viewname) => {
       return settings.views[viewname]
     })    
