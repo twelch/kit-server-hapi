@@ -3,7 +3,7 @@
 const Boom = require('boom')
 const settings = require('../../../settings')
 const pick = require('lodash/pick')
-const clonedeep = require('lodash/clonedeep')
+const clonedeep = require('lodash.clonedeep')
 /*
  * getSites - get all user sites
  */
