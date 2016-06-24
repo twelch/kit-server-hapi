@@ -24,6 +24,7 @@
     "glob": "^7.0.3",
     "h2o2": "^5.1.0",
     "hapi": "^13.4.1",
+    "hapi-accept-language": "^1.0.1",
     "hapi-auth-jwt2": "^7.0.1",
     "hoek": "^4.0.1",
     "jsonwebtoken": "^7.0.0",
