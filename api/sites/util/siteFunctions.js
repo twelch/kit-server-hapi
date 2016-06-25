@@ -8,16 +8,17 @@ const clonedeep = require('lodash.clonedeep')
  * getSites - get all user sites
  */
 function getSites (request, reply) {
-  // Build up complete sites object
+  // Copy sites and views
   let sites = clonedeep(settings.sites)
+  let views = clonedeep(settings.views)
   // Pick out sites user has access to
   sites = pick(sites, request.auth.credentials.sites)
   Object.keys(sites).forEach((siteid) => {
-    // Replace view names with full objects
+    // Swap view ids for each site with full view objects
     let curSite = sites[siteid]
     curSite.id = siteid
     curSite.views = curSite.views.map((viewname) => {
-      return settings.views[viewname]
+      return views.find((view) => view.id === viewname)
     })    
   })
   return reply(sites)

@@ -53,18 +53,18 @@ module.exports = {
   },
 
   // Views are typically associated with only one site but sometimes a view will be made available in many sites
-  views: {
-    view1: {
+  views: [{
+      id: 'view1',
       name: 'View 1',
       startExtent: []
-    },
-    view2: {
+    },{
+      id: 'view2',
       name: 'View 2',
       startExtent: []
-    },
-    view3: {
+    },{
+      id: 'view3',
       name: 'View 3',
       startExtent: []
     }
-  }
+  ]
 }
