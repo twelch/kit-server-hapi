@@ -2,8 +2,9 @@
 
 const Boom = require('boom')
 const settings = require('../../../settings')
-const pick = require('lodash/pick')
+const pick = require('lodash.pick')
 const clonedeep = require('lodash.clonedeep')
+const getUserByName = require('../../users/util/userFunctions').getUserByName
 /*
  * getSites - get all user sites
  */
@@ -12,7 +13,8 @@ function getSites (request, reply) {
   let sites = clonedeep(settings.sites)
   let views = clonedeep(settings.views)
   // Pick out sites user has access to
-  sites = pick(sites, request.auth.credentials.sites)
+  const curUser = getUserByName(request.auth.credentials.username)
+  sites = pick(sites, curUser.sites)
   Object.keys(sites).forEach((siteid) => {
     // Swap view ids for each site with full view objects
     let curSite = sites[siteid]
