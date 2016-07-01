@@ -11,6 +11,11 @@ Build a simple multi-tenant server application using Hapi.JS configured with:
 
 This application is meant to be accessed solely via the REST API and it's /api endpoint.  It is designed to be published under a single domain alongside [kit-client-react](https://github.com/twelch/kit-client-react) which provides a single-page-app (SPA) user experience.
 
+## Features
+* [hapi](http://hapijs.com/)
+* [hapi-auth-jwt-2](https://github.com/dwyl/hapi-auth-jwt2)
+* [hapi-accept-language](https://github.com/opentable/hapi-accept-language)
+
 ## Requirements
 * node `^6.2.0` for use of basic es2015 language features though earlier could work
 * npm `^3.0.0`
