@@ -1,7 +1,7 @@
 {
-  "name": "hapi-tests",
-  "version": "1.0.0",
-  "description": "Test out Hapi essentials including JWT, api publishing, and proxy",
+  "name": "kit-server-hapi",
+  "version": "0.1.0",
+  "description": "simple multi-tenant server application using Hapi.JS",
   "main": "server.js",
   "scripts": {
     "genhash": "node ./bin/genhash.js",

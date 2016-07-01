@@ -1,12 +1,7 @@
 module.exports = {
-  // App setup steps
-  // 1. Generate and set the secret key >npm run gensecret
-  // 2. Create and set new users and passwords.  Generate password hash by running >npm run genhash yourpassword
-  // 3. Remove all sample user accounts
-  // 4. Set read and admin Netsense API keys
-  // 5. Configure all relevant views
 
   // Private key for generating tokens. Change this before deploying and do not distribute
+  // The gensecret utility is provided for generating a new random secret key
   // If you change its value, all unexpired web tokens will be invalid
   secret: 'changeme',
 
@@ -17,11 +12,12 @@ module.exports = {
   // Attributes are encrypted in web token
   // Remove all examples before deploying in production
   users: [
-    { id: 1, username: 'user1', name: 'User 1', sites: ['site1', 'site2'] },
+    { id: 1, username: 'user1', name: 'User 1', sites: ['pdx', 'site2'] },
     { id: 2, username: 'user2', name: 'User 2', sites: ['site2'] }
   ],
 
   // Password hashes, id's map to accounts above
+  // The genhash utility is provided for generating new user account hashes
   // Remove all samples before deploying in production
   passwords: [
     {userid: 1, hash: '$2a$10$VW9yDJli5LX6YjZz3vB6peiM62C9apodRMyAl6.JvMZjhA0UBJCR6'},
@@ -29,19 +25,19 @@ module.exports = {
   ],
 
   sites: {
-    site1: {
-      name: 'Site 1',
-      description: 'Portland, Oregon, USA',
+    pdx: {
+      name: 'Portland International Airport',
+      description: 'Portland, United States',
       logo: 'logo1.png',
       logo2x: 'logo1@2x.png',
-      views: ['view1','view2']
+      views: ['short-term','long-term', 'economy', 'wait-area']
     },
     site2: {
-      name: 'Site 2',
+      name: 'Shanghai Pudong International Airport',
       description: 'Shanghai, China',
       logo: 'logo2.png',
       logo2x: 'logo2@2x.png',
-      views: ['view2']
+      views: ['terminal1', 'terminal2']
     },
     site3: {
       name: 'Site 3',
@@ -54,14 +50,119 @@ module.exports = {
 
   // Views are typically associated with only one site but sometimes a view will be made available in many sites
   views: [{
-      id: 'view1',
-      name: 'View 1',
-      startExtent: []
+      id: 'short-term',
+      name: 'Short-term Parking',      
+      type: 'basic',
+      map: {
+        token: 'pk.eyJ1IjoidHdlbGNoIiwiYSI6ImNpcHloYnN0NzB5ZzNoMW5yd3Z4cjJ1eDQifQ.k48TV6SQlBb_9ctuj8Jrzg',        
+        start: {
+          style: 'mapbox://styles/mapbox/streets-v9',
+          center: [-122.591581, 45.588673],
+          zoom: 17.5
+        },
+        // Toggle layers appear in the sidebar menu and are not visible on initial load
+        // These layers must already be published in your map style with layer name == id
+        toggleLayers: [
+          {id: 'satellite', name: 'Satellite', visible: false}
+        ]  
+      }
     },{
-      id: 'view2',
-      name: 'View 2',
-      startExtent: []
+      id: 'long-term',
+      name: 'Long-term Parking',      
+      type: 'basic',
+      map: {
+        token: 'pk.eyJ1IjoidHdlbGNoIiwiYSI6ImNpcHloYnN0NzB5ZzNoMW5yd3Z4cjJ1eDQifQ.k48TV6SQlBb_9ctuj8Jrzg',        
+        start: {
+          style: 'mapbox://styles/mapbox/streets-v9',
+          center: [-122.589993, 45.587967],
+          zoom: 17.5
+        },
+        // Toggle layers appear in the sidebar menu and are not visible on initial load
+        // These layers must already be published in your map style with layer name == id
+        toggleLayers: [
+          {id: 'satellite', name: 'Satellite', visible: false}
+        ]  
+      }
     },{
+      id: 'wait-area',
+      name: 'Waiting Area',      
+      type: 'basic',
+      map: {
+        token: 'pk.eyJ1IjoidHdlbGNoIiwiYSI6ImNpcHloYnN0NzB5ZzNoMW5yd3Z4cjJ1eDQifQ.k48TV6SQlBb_9ctuj8Jrzg',        
+        start: {
+          style: 'mapbox://styles/mapbox/streets-v9',
+          center: [-122.577805, 45.581357],
+          zoom: 18
+        },
+        // Toggle layers appear in the sidebar menu and are not visible on initial load
+        // These layers must already be published in your map style with layer name == id
+        toggleLayers: [
+          {id: 'satellite', name: 'Satellite', visible: false}
+        ]  
+      }
+    },{
+      id: 'economy',
+      name: 'Economy Parking',      
+      type: 'basic',
+      map: {
+        token: 'pk.eyJ1IjoidHdlbGNoIiwiYSI6ImNpcHloYnN0NzB5ZzNoMW5yd3Z4cjJ1eDQifQ.k48TV6SQlBb_9ctuj8Jrzg',        
+        start: {
+          style: 'mapbox://styles/mapbox/satellite-v9',
+          center: [-122.557104, 45.577278],
+          zoom: 16.5
+        },
+        // Toggle layers appear in the sidebar menu and are not visible on initial load
+        // These layers must already be published in your map style with layer name == id
+        toggleLayers: [
+          {id: 'satellite', name: 'Satellite', visible: false}
+        ]  
+      }
+    },{
+      id: 'terminal1',
+      name: 'Terminal 1',
+      type: 'basic',
+      map: {
+        token: 'pk.eyJ1IjoidHdlbGNoIiwiYSI6ImNpcHloYnN0NzB5ZzNoMW5yd3Z4cjJ1eDQifQ.k48TV6SQlBb_9ctuj8Jrzg',        
+        start: {
+          style: 'mapbox://styles/mapbox/streets-v9',
+          center: [121.798926, 31.151710],
+          zoom: 17,
+          animateTo: {
+            zoom: 17.5,
+            duration: 8000
+          }
+        },
+
+        // Toggle layers appear in the sidebar menu and are not visible on initial load
+        // These layers must already be published in your map style with layer name == id
+        toggleLayers: [
+          {id: 'satellite', name: 'Satellite', visible: false}
+        ]  
+      }
+    },{
+      id: 'terminal2',
+      name: 'Terminal 2',
+      type: 'basic',
+      map: {
+        token: 'pk.eyJ1IjoidHdlbGNoIiwiYSI6ImNpcHloYnN0NzB5ZzNoMW5yd3Z4cjJ1eDQifQ.k48TV6SQlBb_9ctuj8Jrzg',        
+        start: {
+          style: 'mapbox://styles/mapbox/streets-v9',
+          center: [121.804668, 31.153121],
+          zoom: 17,
+          animateTo: {
+            zoom: 17.5,
+            duration: 8000
+          }
+        },
+
+        // Toggle layers appear in the sidebar menu and are not visible on initial load
+        // These layers must already be published in your map style with layer name == id
+        toggleLayers: [
+          {id: 'satellite', name: 'Satellite', visible: false}
+        ]  
+      }
+    },
+    {
       id: 'view3',
       name: 'View 3',
       startExtent: []
