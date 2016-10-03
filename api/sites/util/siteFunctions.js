@@ -2,14 +2,27 @@
 
 const Boom = require('boom')
 const settings = require('../../../settings')
-const pick = require('lodash/pick')
-
+const pick = require('lodash.pick')
+const clonedeep = require('lodash.clonedeep')
+const getUserByName = require('../../users/util/userFunctions').getUserByName
 /*
- * getSites - get all user istes
+ * getSites - get all user sites
  */
 function getSites (request, reply) {
-  // Enhance and return new site object
-  const sites = pick(settings.sites, request.auth.credentials.sites)
+  // Copy sites and views
+  let sites = clonedeep(settings.sites)
+  let views = clonedeep(settings.views)
+  // Pick out sites user has access to
+  const curUser = getUserByName(request.auth.credentials.username)
+  sites = pick(sites, curUser.sites)
+  Object.keys(sites).forEach((siteid) => {
+    // Swap view ids for each site with full view objects
+    let curSite = sites[siteid]
+    curSite.id = siteid
+    curSite.views = curSite.views.map((viewname) => {
+      return views.find((view) => view.id === viewname)
+    })    
+  })
   return reply(sites)
 }
 

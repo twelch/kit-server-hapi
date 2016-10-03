@@ -91,5 +91,6 @@ function getHashById (userid) {
 module.exports = {
   hashPassword: hashPassword,
   verifyCredentials: verifyCredentials,
-  verifySession: verifySession
+  verifySession: verifySession,
+  getUserByName: getUserByName
 }

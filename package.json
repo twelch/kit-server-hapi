@@ -1,7 +1,7 @@
 {
-  "name": "hapi-tests",
-  "version": "1.0.0",
-  "description": "Test out Hapi essentials including JWT, api publishing, and proxy",
+  "name": "kit-server-hapi",
+  "version": "0.1.0",
+  "description": "simple multi-tenant server application using Hapi.JS",
   "main": "server.js",
   "scripts": {
     "genhash": "node ./bin/genhash.js",
@@ -24,10 +24,12 @@
     "glob": "^7.0.3",
     "h2o2": "^5.1.0",
     "hapi": "^13.4.1",
+    "hapi-accept-language": "^1.0.1",
     "hapi-auth-jwt2": "^7.0.1",
     "hoek": "^4.0.1",
     "jsonwebtoken": "^7.0.0",
-    "lodash": "^4.13.1"
+    "lodash.clonedeep": "^4.3.2",
+    "lodash.pick": "^4.2.1"
   },
   "devDependencies": {
     "eslint": "^2.13.0",
